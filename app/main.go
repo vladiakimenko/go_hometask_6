@@ -97,12 +97,7 @@ func monitorProgress(totalTasks int, results <-chan Result, done chan<- bool) {
 			completed++
 			// для простоты считаем, что нам пофиг на задержку сигнала о завершении до следующего тика
 		case <-ticker.C:
-			if completed == totalTasks {
-				done <- true
-				return
-			} else {
-				fmt.Printf("Завершено %.0f%% задач\n", (float64(completed)/float64(totalTasks))*100)
-			}
+			fmt.Printf("Завершено %.0f%% задач\n", (float64(completed)/float64(totalTasks))*100)
 		}
 	}
 }
